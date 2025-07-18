@@ -1,7 +1,7 @@
 PKG = hello
 
 build:
-	nix build
+	nix --extra-experimental-features "nix-command flakes" build
 
 run:
 	$(PKG)
@@ -10,7 +10,7 @@ clean:
 	rm -fv result flake.lock
 
 install: build
-	nix profile add .
+	nix --extra-experimental-features "nix-command flakes" profile add .
 
 uninstall:
-	nix profile remove $(PKG)
+	nix --extra-experimental-features "nix-command flakes" profile remove $(PKG)
